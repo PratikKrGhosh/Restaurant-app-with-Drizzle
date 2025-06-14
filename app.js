@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(import.meta.dirname, "client", "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(import.meta.dirname, "client", "views"));
 
@@ -18,13 +19,17 @@ app.use("/api/dish", dishRouter);
 app.get("/", (req, res) => {
   res
     .status(200)
-    .sendFile(path.join(import.meta.dirname, "client", "user", "index.html"));
+    .sendFile(
+      path.join(import.meta.dirname, "client", "src", "user", "index.html")
+    );
 });
 
 app.get("/signup", (req, res) => {
   res
     .status(200)
-    .sendFile(path.join(import.meta.dirname, "client", "user", "signup.html"));
+    .sendFile(
+      path.join(import.meta.dirname, "client", "src", "user", "signup.html")
+    );
 });
 
 app.get("/menu", async (req, res) => {
@@ -35,7 +40,9 @@ app.get("/menu", async (req, res) => {
 app.get("/add", async (req, res) => {
   res
     .status(200)
-    .sendFile(path.join(import.meta.dirname, "client", "dish", "index.html"));
+    .sendFile(
+      path.join(import.meta.dirname, "client", "src", "dish", "index.html")
+    );
 });
 
 export default app;
