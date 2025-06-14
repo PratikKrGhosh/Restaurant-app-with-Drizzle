@@ -17,6 +17,7 @@ export const getDish = async (req, res) => {
 
     if (name) {
       const dishData = await db.select().from(Dish).where(eq(Dish.name, name));
+      console.log(dishData);
       return res.status(200).json(dishData);
     }
 
@@ -29,7 +30,7 @@ export const getDish = async (req, res) => {
     }
 
     const dishData = await db.select().from(Dish);
-    return res.status(200).json(dishData);
+    return dishData;
   } catch (err) {
     return res.status(400).send("Something Went Wrong");
   }

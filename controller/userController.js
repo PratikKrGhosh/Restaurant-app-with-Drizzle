@@ -16,7 +16,7 @@ export const getUser = async (req, res) => {
     const { name, designation } = req.query;
     if (name) {
       const userData = await db.select().from(User).where(eq(User.name, name));
-      return res.status(200).json(userData);
+      return userData;
     }
 
     if (designation) {
@@ -31,6 +31,25 @@ export const getUser = async (req, res) => {
     return res.status(200).json(userData);
   } catch (err) {
     return res.status(400).send("Something Went Wrong");
+  }
+};
+
+export const signin = async (req, res) => {
+  try {
+    const { password } = req.query;
+    const [userData] = await getUser(req, res);
+
+    if (userData.length == 0) {
+      return res.status(404).send("User Does not Exist!");
+    }
+
+    if (userData.password != password) {
+      return res.status(400).json({ password: "wrong" });
+    }
+
+    return res.status(200).redirect("/menu");
+  } catch (err) {
+    return res.status(400).send("Something went wrong");
   }
 };
 
