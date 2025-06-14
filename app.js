@@ -29,7 +29,7 @@ app.get("/signup", (req, res) => {
 
 app.get("/menu", async (req, res) => {
   const dishData = await getDish(req, res);
-  res.status(200).render("index", dishData);
+  res.status(200).render("index", { dishData });
 });
 
 app.get("/add", async (req, res) => {

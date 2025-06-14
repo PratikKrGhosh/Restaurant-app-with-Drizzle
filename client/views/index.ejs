@@ -7,11 +7,13 @@
   </head>
   <body>
     <h1>Menu</h1>
-    <%- dishData.map((e) => { %> <%= e.name %>
-    <br />
-    <%= e.price %>
-    <br />
-    <%= e.description %> <%- }); %>
+    <% dishData.forEach(element => { %>
+    <div class="item-menu">
+      <h2><%= element.name %></h2>
+      <h4><%= element.price %></h4>
+      <p><%= element.description %></p>
+    </div>
+    <% }) %>
     <a href="/add">Add Dish</a>
   </body>
 </html>
