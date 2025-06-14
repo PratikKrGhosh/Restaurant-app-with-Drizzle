@@ -1,5 +1,5 @@
 import db from "../config/db.js";
-import { User } from "../drizzle/schema.js";
+import { Dish } from "../drizzle/schema.js";
 
 export const createDish = async (req, res) => {
   try {
